@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+
+  <title>WhenToPlay</title>
+  <link href="css/style.css" rel="stylesheet" />
+  <link href="css/leaflet.css" rel="stylesheet" />
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.css' rel='stylesheet' />
+  <!-- <script src='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.css' rel='stylesheet' /> -->
+</head>
+<body>
+  <div id="container">
+
+
+    <header>
+      <nav>
+        <ul>
+          <li><a class="home" href="index.html">When2Play</li>
+          <li class="zoom"><a class="nav" href="about.html">About</a></li>
+          <li class="zoom"><a class="nav" href="map.html">Map</a></li>
+          <!-- <li class="zoom"><a class="nav" href="videos.html">Music</a></li>
+          <li class="zoom"><a class="nav" href="blog.html">Blog</a></li> -->
+        </ul>
+      </nav>
+    </header>
+
+    <h1 id="h1">Interactive Map</h1>
+    <div class="grid">
+    <div id="leftbox">
+    <form>
+
+    <select id="team">
+      <option value="null">Select a Park in Coral Gables...</option>
+      <option value="jaycee">Jaycee Park</option>
+      <option value="salvadore">Salvadore Park</option>
+      <option value="phillips">Phillips Park</option>
+      <option value="coral">Coral Bay Park</option>
+    </select>
+  </form>
+  <div id="result"></div>
+</div>
+    <!-- <div id= "content"> -->
+      <div id = 'map'></div>
+      <script src="js/leaflet.js"></script>
+      <script src="js/map.js"></script>
+  </div>
+
+  <!-- </div> -->
+
+
+
+
+  </div>
+
+</body>
+</html>
