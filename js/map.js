@@ -190,10 +190,8 @@ coral: {
           //     console.log(pulldownData);
               console.log(parkInfo[pulldownData].parkName);
 
-              outputString = "<p>You selected:</p>"
-                             + "<p><strong>Park Name:</strong> "
-                             + parkInfo[pulldownData].parkName
-                             + "</p>"
+              outputString = "<h2>"+ parkInfo[pulldownData].parkName
+                             +"</h2>"
                              + "<p><strong>Address:</strong> "
                              + parkInfo[pulldownData].address
                              + "</p>"
@@ -208,11 +206,17 @@ coral: {
                           var x = document.getElementById("weatherIcon");
                           x.src = data.properties.periods[0].icon;
 
-                          weatherString = "<h2>The weather forecast for "
+                          weatherString = "<h3>The weather forecast for "
                                         + data.properties.periods[0].name.toLowerCase()
-                                        + ": </h2>"
+                                        + ": </h3>"
                                         + "<p><strong>Detailed Forecast: </strong>"
                                         + data.properties.periods[0].detailedForecast
+                                        + "</p>"
+                                        + "<h3>The weather forecast for "
+                                        + data.properties.periods[1].name.toLowerCase()
+                                        + ": </h3>"
+                                        + "<p><strong>Detailed Forecast: </strong>"
+                                        + data.properties.periods[1].detailedForecast
                                         + "</p>";
                           weather.innerHTML = weatherString;
                 }
