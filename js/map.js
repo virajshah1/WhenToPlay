@@ -22,15 +22,16 @@ mapboxgl.accessToken = 'pk.eyJ1IjoidmlyYWoxMDI5IiwiYSI6ImNqZ2ZsaHFwYTJ5YnAyd3Fle
 //         if (error) throw error;
 //         map.addImage('marker', image);
 
-
-var jaycee =  {
+var parkInfo = {
+    jaycee: {
     id: "jaycee",
-    name: "Jaycee Park",
+    parkName: "Jaycee Park",
     lat: 25.7114614,
     lng: -80.2779458,
     zoom: 18,
     address: "1230 Hardee Rd Coral Gables, FL 33146",
     phoneNumber: "Not Available",
+    weather: "https://api.weather.gov/gridpoints/MFL/106,47/forecast",
     features: [{
             "type": "Feature",
             "properties": {
@@ -52,16 +53,16 @@ var jaycee =  {
                 "coordinates": [-80.27765905491205, 25.711366639117685]
             }
           }]
-      };
-
-var salvadore =  {
+      },
+    salvadore: {
     id: "salvadore",
-    name: "Salvadore Park",
+    parkName: "Salvadore Park",
     lat: 25.7474295,
     lng: -80.2779948,
     zoom: 18,
     address: "1120 Andalusia Ave Coral Gables, FL 33134",
     phoneNumber: "(305) 460-5333",
+    weather: "https://api.weather.gov/gridpoints/MFL/106,48/forecast",
     features: [{
             "type": "Feature",
             "properties": {
@@ -83,16 +84,16 @@ var salvadore =  {
                 "coordinates": [-80.27761660853581, 25.74720587682991]
             }
           }]
-      };
-
- var phillips =  {
+      },
+    phillips: {
     id: "phillips",
-    name: "Phillips Park",
+    parkName: "Phillips Park",
     lat: 25.757669,
     lng: -80.2563704,
     zoom: 17.8,
     address: "90 Menores Avenue, Coral Gables, FL",
     phoneNumber: "(305) 460-5600",
+    weather: "https://api.weather.gov/gridpoints/MFL/106,49/forecast",
     features: [{
             "type": "Feature",
             "properties": {
@@ -124,16 +125,16 @@ var salvadore =  {
                 "coordinates": [-80.25635499476195, 25.757682087600386]
             }
         }]
-      };
-
-  var coralBay = {
+      },
+coral: {
     id: "coral",
-    name: "Coral Bay Park",
+    parkName: "Coral Bay Park",
     lat: 25.6541454,
     lng: -80.2832038,
     zoom: 18,
     address: "1590 Campamento Ave Coral Gables, FL 33156",
     phoneNumber: "Not Available",
+    weather: "https://api.weather.gov/gridpoints/MFL/106,44/forecast",
     features: [{
             "type": "Feature",
             "properties": {
@@ -155,17 +156,20 @@ var salvadore =  {
                 "coordinates": [-80.28343446997897, 25.654235916621346]
             }
           }]
-      };
+      }
+    }
 
 
 
 
 //Array of all the park objects
-var parkInfo = [jaycee, salvadore, phillips, coralBay];
+
 
 
     var teamPulldown = document.querySelector("#team");
     var result = document.querySelector("#result");
+
+    var outputString = "";
 
       teamPulldown.addEventListener("change", function(event) {
         console.log(event.target.selectedOptions[0]);
@@ -180,40 +184,69 @@ var parkInfo = [jaycee, salvadore, phillips, coralBay];
         if (event.target.selectedOptions[0].value != "null") {
           var pulldownData = event.target.selectedOptions[0].value;
 
-          for(i = 0; i < parkInfo.length; i++){
+          // for(i = 0; i < parkInfo.length; i++){
+          //
+          //   if(pulldownData == parkInfo[i].id){
+          //     console.log(pulldownData);
+              console.log(parkInfo[pulldownData].parkName);
 
-            if(pulldownData == parkInfo[i].id){
-              console.log(pulldownData);
-              console.log(parkInfo[i].id);
+              outputString = "<p>You selected:</p>"
+                             + "<p><strong>Park Name:</strong> "
+                             + parkInfo[pulldownData].parkName
+                             + "</p>"
+                             + "<p><strong>Address:</strong> "
+                             + parkInfo[pulldownData].address
+                             + "</p>"
+                             + "<p><strong>Telephone:</strong> "
+                             + parkInfo[pulldownData].phoneNumber
+                             + "</p>";
+
+             $.getJSON(parkInfo[pulldownData].weather,
+                function(data) {
+                          console.log(data);
+                          var weatherString;
+                          var x = document.getElementById("weatherIcon");
+                          x.src = data.properties.periods[0].icon;
+
+                          weatherString = "<h2>The weather forecast for "
+                                        + data.properties.periods[0].name.toLowerCase()
+                                        + ": </h2>"
+                                        + "<p><strong>Detailed Forecast: </strong>"
+                                        + data.properties.periods[0].detailedForecast
+                                        + "</p>";
+                          weather.innerHTML = weatherString;
+                }
+              );
               // var name = "<p>Park Name: " + parkInfo[i].name + "</p>";
               // var address = "<p>Address: " + parkInfo[i].address + "</p>";
               // var telephone = "<p>Phone Number: " + parkInfo[i].phoneNumber + "</p>";
               //console.log(telephone + name);
               // result.innerHTML = name + address + telephone;
 
-              result.innerHTML += "<p>Park Name: " + parkInfo[i].name + "</p>";
-              result.innerHTML += "<p>Address: " + parkInfo[i].address + "</p>";
-              result.innerHTML += "<p>Phone Number: " + parkInfo[i].phoneNumber + "</p>";
+              //result.innerHTML = outputString;
 
               var map = new mapboxgl.Map({
                   container: 'map',
                   style: 'mapbox://styles/mapbox/satellite-v9',
-                  zoom: parkInfo[i].zoom,
-                  center: [parkInfo[i].lng, parkInfo[i].lat]
+                  zoom: parkInfo[pulldownData].zoom,
+                  center: [parkInfo[pulldownData].lng, parkInfo[pulldownData].lat]
               });
-              function onMapClick(event){
-                    console.log(event.lngLat);
-                   //console.dir(event);
-                  };
+              // function onMapClick(event){
+              //       console.log(event.lngLat);
+              //      //console.dir(event);
+              //     };
+              //
+              //     map.on("click", onMapClick);
 
-                  map.on("click", onMapClick);
-
-              var currPark = parkInfo[i];
+              var currPark = parkInfo[pulldownData];
               var features = currPark.features;
+
+
 
               map.on('load', function () {
                   // Add a layer showing the places.
-                  map.addLayer({
+
+                    var geojson = {
                       "id": "places",
                       "type": "symbol",
                       "source": {
@@ -227,7 +260,42 @@ var parkInfo = [jaycee, salvadore, phillips, coralBay];
                           "icon-image": "{icon}-15",
                           "icon-allow-overlap": true
                       }
-                  });
+                  }
+                  map.addLayer(geojson);
+
+    //               geojson.source.data.features.forEach(function(marker) {
+    //     // create a DOM element for the marker
+    //     var el = document.createElement('div');
+    //     el.className = 'marker';
+    //     el.style.backgroundImage= "url(https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Map_marker.svg/15px-Map_marker.svg.png)";
+    //     el.style.width = marker.properties.iconSize[0] + 'px';
+    //     el.style.height = marker.properties.iconSize[1] + 'px';
+    //
+    //     // add marker to map
+    //     new mapboxgl.Marker(el)
+    //         .setLngLat(marker.geometry.coordinates)
+    //         .addTo(map);
+    //     // el.addEventListener('click', function() {
+    //     //         //window.alert(marker.properties.message);
+    //     //         var coordinates = marker.geometry.coordinates.slice();
+    //     //         var description = marker.properties.description;
+    //     //         //console.log(description);
+    //     //         //console.log(coordinates);
+    //     //         // Ensure that if the map is zoomed out such that multiple
+    //     //         // copies of the feature are visible, the popup appears
+    //     //         // over the copy being pointed to.
+    //     //         // while (Math.abs(marker.lngLat.lng - coordinates[0]) > 180) {
+    //     //         //     coordinates[0] += marker.lngLat.lng > coordinates[0] ? 360 : -360;
+    //     //         // }
+    //     //
+    //     //         new mapboxgl.Popup()
+    //     //             .setLngLat(coordinates)
+    //     //             .setHTML(description)
+    //     //             .addTo(map);
+    //     //     });
+    // });
+
+
                   map.on('click', 'places', function (e) {
                     var coordinates = e.features[0].geometry.coordinates.slice();
                     var description = e.features[0].properties.description;
@@ -259,12 +327,13 @@ var parkInfo = [jaycee, salvadore, phillips, coralBay];
         }
           //result.textContent = "You selected: " + pulldownData + ". \n ";
          else {
-          result.textContent = "";
+          outputString = "";
         }
-        }
-      }
-    });
+        result.innerHTML = outputString;
 
+
+
+    });
 
 
 // function onMapClick(event){
