@@ -10,6 +10,10 @@
   margin: 0 auto;
 }
 
+#appInfo{
+  font-size: 20px;
+}
+
 body{
   background-color: #f7f7f7;
 }
@@ -17,7 +21,8 @@ body{
 p{
   color: black;
   opacity: 1 !important;
-  background-color: rgba(220, 227, 239, 0.3);
+  background-color: rgba(134, 184, 249, 0.1);
+  /*background-color: rgba(220, 227, 239, 0.3);*/
   padding: 10px;
 }
 
@@ -62,6 +67,7 @@ p{
   font-size: 32px;
 
 }
+
 
 #weatherImage{
   width: 450px;
@@ -171,6 +177,9 @@ margin-bottom: 20px;
 /*color: #47c1ff !important;*/
 font-size: 30px;
 
+}
+.link{
+  color: #FF6A5C !important;
 }
 
 a{
