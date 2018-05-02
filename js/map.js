@@ -189,6 +189,12 @@ coral: {
           //   if(pulldownData == parkInfo[i].id){
           //     console.log(pulldownData);
               console.log(parkInfo[pulldownData].parkName);
+              var informationString = "";
+              var information = document.getElementById("information");
+              informationString = "<p><strong>Click on the stars for additional information</strong></p>"
+              information.innerHTML = informationString;
+
+
 
               outputString = "<h2>"+ parkInfo[pulldownData].parkName
                              +"</h2>"

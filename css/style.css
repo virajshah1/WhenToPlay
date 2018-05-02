@@ -10,15 +10,34 @@
   margin: 0 auto;
 }
 
+body{
+  background-color: #f7f7f7;
+}
+
+p{
+  color: black;
+  opacity: 1 !important;
+  background-color: rgba(220, 227, 239, 0.3);
+  padding: 10px;
+}
+
+
 /*Grid for index.html*/
 #left-col{
   /*width: 480px;
   height: auto*/
+  /*background-color: rgba(220, 227, 239, 0.3);
+  padding: 10px;*/
+
   grid-area: left-col
+
 }
 #right-col{
   /*width: 480px;
   height: auto;*/
+  /*background-color: rgba(220, 227, 239, 0.3);
+  padding: 10px;*/
+
   grid-area: right-col
 }
 
@@ -36,6 +55,20 @@
 #app{
   width: 300px;
   height: auto;
+  background-color: rgba(220, 227, 239, 0.6);
+  padding: 30px;
+}
+
+#weatherImage{
+  width: 450px;
+  height: auto;
+}
+
+#diagram{
+  width: 450px;
+  height: auto;
+  background-color: rgba(220, 227, 239, 0.6);
+  padding: 15px;
 }
 
 /*Grid for the map.html*/
@@ -59,7 +92,16 @@
 
 
 #leftbox{
+
   grid-area: leftbox;
+}
+
+#rightbox{
+
+  grid-area: rightbox;
+  width: 600px;
+  height: 400px;
+
 }
 
 
@@ -73,17 +115,24 @@
   min-width: 960px;
   margin: 0 auto;
   grid-template-areas:
-    "leftbox map";
+    "leftbox rightbox";
   }
 
 
 
   h1{
     margin-top: 80px;
-    color: black;
-
-
+    color: #FF6A5C;
   }
+
+  h2{
+    color: #074ab7;
+  }
+
+  h3{
+    color: #074ab7;
+  }
+
 /*
   h1 + img {
     margin-top: 80px;
@@ -108,12 +157,13 @@ top: 0;
 left: 0;
 width: 100%;
 background: #22313F;
+/*background-color: #FF652F;*/
 z-index: 10;
 margin-bottom: 20px;
 }
 
 .home{
-  color: white !important;
+  color: #feda00 !important;
 /*color: #47c1ff !important;*/
 font-size: 30px;
 
@@ -134,7 +184,8 @@ a:visited{
 }
 
 a:hover{
-  text-decoration: underline;
+  /*text-decoration: underline;*/
+  opacity: 0.8;
 }
 
 nav ul{
