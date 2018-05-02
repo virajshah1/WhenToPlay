@@ -58,6 +58,10 @@ p{
   background-color: rgba(220, 227, 239, 0.6);
   padding: 30px;
 }
+.bigger{
+  font-size: 32px;
+
+}
 
 #weatherImage{
   width: 450px;
